@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonAllModule } from '@syncfusion/ej2-angular-buttons';
 import { TextBoxAllModule } from '@syncfusion/ej2-angular-inputs';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,9 @@ export class LoginComponent implements OnInit {
   public userLoginForm!: FormGroup;
   public showAndHidePasswordToggleIcon = true;
 
+  constructor(public loginService: LoginService) {
+  }
+
   ngOnInit(): void {
     this.userLoginForm = new FormGroup({
       username: new FormControl(null, Validators.compose([Validators.required])),
@@ -23,11 +27,14 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitLoggedInUserDetails() {
-
+    if (this.userLoginForm?.valid) {
+      this.loginService.getLoggedInUserDetail(this.userLoginForm?.value);
+    } else {
+      this.userLoginForm?.markAllAsTouched();
+    }
   }
 
   viewOrHidePasswordToggle() {
     this.showAndHidePasswordToggleIcon = !this.showAndHidePasswordToggleIcon;
   }
-
 }
