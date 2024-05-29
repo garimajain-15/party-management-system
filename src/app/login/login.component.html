@@ -1,0 +1,56 @@
+
+<div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+    <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+      <div class="absolute inset-0 bg-gradient-to-r from-[#ff9b44] to-[#fc6075] shadow-lg transform
+       -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl w-full">
+      </div>
+      <div class="relative px-4 py-4 bg-white shadow-lg sm:rounded-3xl sm:p-20 w-96 max-md:w-full">
+  
+        <div class="max-w-md mx-auto">
+  
+        <!-- Tool Logo -->
+        <div class="text-center mb-[10px]">
+          <img src="../../assets/images/event-management-login.png" alt="Logo" class="w-[120px] mx-auto">
+        </div>
+        <!-- Tool Logo -->
+  
+        <!-- Login Form -->
+        <form [formGroup]="userLoginForm">
+          <div class="mb-[25px]">
+            <ejs-textbox type="text" formControlName="username" [placeholder]="'Username'" data-cy="email"
+                         [floatLabelType]="'Always'" autoComplete="off">
+            </ejs-textbox>
+            <div class="e-error" *ngIf="userLoginForm.get('username')?.hasError('required')
+                     && userLoginForm?.get('username')?.touched">
+              Username is required.
+            </div>
+          </div>
+          <div class="mb-[25px] relative">
+            <div class="relative inline-block w-full">
+            <ejs-textbox formControlName="password" [type]="showAndHidePasswordToggleIcon ? 'password' : 'text'"
+                         [placeholder]="'Password'"
+                         [floatLabelType]="'Always'" autoComplete="off" class="pr-12">
+            </ejs-textbox>
+            <span
+              class="absolute inset-y-0 right-0 flex items-center justify-center pr-2 top-5 text-gray-500 cursor-pointer"
+              [ngClass]="showAndHidePasswordToggleIcon ? 'fa toggle-password fa-eye-slash' : 'fa toggle-password fa-eye'"
+              (click)="viewOrHidePasswordToggle()"></span>
+            </div>
+            <div class="e-error"
+                 *ngIf="userLoginForm.get('password')?.hasError('required') 
+                 && userLoginForm.get('password')?.touched">
+              Password is required.
+            </div>
+          </div>
+          <div class="mb-[25px] text-center">
+            <button ejs-progressbutton
+                    class="bg-gradient-to-r from-[#ff9b44] to-[#fc6075] text-white rounded block text-[22px] px-[26px] py-[10px] w-full hover:bg-gradient-to-r hover:from-[#ff9b44] hover:to-[#fc6075] hover:opacity-80 focus:outline-none focus:ring-0 focus:bg-gradient-to-r focus:from-[#ff9b44] focus:to-[#fc6075]"
+                    (click)="onSubmitLoggedInUserDetails()" >Login</button>
+          </div>
+        </form>
+        <!-- Login Form -->
+      </div>
+      </div>
+    </div>
+  </div>
+  
